@@ -27,8 +27,8 @@ public class CallCoinDeskController {
 	private static final String URL = "https://api.coindesk.com/v1/bpi/currentprice.json";
 	
 	
-	@RequestMapping("/coinDesk")
-	public CallResponseDTO call() throws Exception {
+	@RequestMapping("/callCoinDesk")
+	public CoinDeskResponseDTO call() throws Exception {
 		RestTemplate restTemplate = new RestTemplate();
 		restTemplate.getMessageConverters().add(new JavascriptHttpMessageConverter());
 		HttpHeaders headers = new HttpHeaders();
@@ -36,7 +36,12 @@ public class CallCoinDeskController {
         
         HttpEntity<String> httpEntity = new HttpEntity<String>(null, headers);
 
-        CoinDeskResponseDTO coinDeskRes = restTemplate.exchange(URL, HttpMethod.GET, httpEntity, CoinDeskResponseDTO.class).getBody();
+        return restTemplate.exchange(URL, HttpMethod.GET, httpEntity, CoinDeskResponseDTO.class).getBody();
+	}
+	
+	@RequestMapping("/callCoinDeskAndParse")
+	public CallResponseDTO callAndParse() throws Exception {
+        CoinDeskResponseDTO coinDeskRes = call();
         List<CurrencyNameDTO> dtoList = currencyNameService.fetchCurrencyNameList();
         return CoinDeskToCallConverter.convert(coinDeskRes, dtoList);
 	}
