@@ -8,6 +8,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
@@ -27,7 +28,7 @@ public class CallCoinDeskController {
 	private static final String URL = "https://api.coindesk.com/v1/bpi/currentprice.json";
 	
 	
-	@RequestMapping("/callCoinDesk")
+	@RequestMapping(value="/callCoinDesk", method = {RequestMethod.POST ,RequestMethod.GET })
 	public CoinDeskResponseDTO call() throws Exception {
 		RestTemplate restTemplate = new RestTemplate();
 		restTemplate.getMessageConverters().add(new JavascriptHttpMessageConverter());
@@ -39,7 +40,7 @@ public class CallCoinDeskController {
         return restTemplate.exchange(URL, HttpMethod.GET, httpEntity, CoinDeskResponseDTO.class).getBody();
 	}
 	
-	@RequestMapping("/callCoinDeskAndParse")
+	@RequestMapping(value="/callCoinDeskAndParse", method = {RequestMethod.POST ,RequestMethod.GET })
 	public CallResponseDTO callAndParse() throws Exception {
         CoinDeskResponseDTO coinDeskRes = call();
         List<CurrencyNameDTO> dtoList = currencyNameService.fetchCurrencyNameList();

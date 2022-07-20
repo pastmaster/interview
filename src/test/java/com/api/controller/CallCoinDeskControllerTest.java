@@ -1,7 +1,7 @@
 package com.api.controller;
 
 import static org.mockito.Mockito.when;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -28,7 +28,7 @@ class CallCoinDeskControllerTest {
 
 	@Test
 	public void callSuccess() throws Exception {
-		mockMvc.perform(get("/callCoinDesk"))
+		mockMvc.perform(post("/callCoinDesk"))
         .andExpect(status().isOk())
         .andDo(print());
 	}
@@ -50,7 +50,7 @@ class CallCoinDeskControllerTest {
 		currenyNameList.add(eur);
 		
 		when(currencyNameService.fetchCurrencyNameList()).thenReturn(currenyNameList);
-		mockMvc.perform(get("/callCoinDeskAndParse"))
+		mockMvc.perform(post("/callCoinDeskAndParse"))
         .andExpect(status().isOk())
         .andDo(print());
 	}

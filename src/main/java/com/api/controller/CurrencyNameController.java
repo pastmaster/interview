@@ -3,6 +3,7 @@ package com.api.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.api.dto.currencyname.DeleteCurrencyNameRequestDTO;
@@ -25,7 +26,7 @@ public class CurrencyNameController {
 	private static final String SUCCESS = "Success";
 	private static final String FAIL = "Fail";
 	
-	@RequestMapping("/insertCurrencyName")
+	@RequestMapping(value="/insertCurrencyName", method = RequestMethod.POST)
 	public InsertCurrencyNameResponseDTO insert(@RequestBody InsertCurrencyNameRequestDTO dto) throws Exception {
 		InsertCurrencyNameResponseDTO ret = new InsertCurrencyNameResponseDTO();
 		ret.setRequest(dto);
@@ -43,7 +44,7 @@ public class CurrencyNameController {
 		return ret;
 	}
 	
-	@RequestMapping("/queryCurrencyName")
+	@RequestMapping(value="/queryCurrencyName", method = {RequestMethod.POST ,RequestMethod.GET })
 	public QueryCurrencyNameResponseDTO query() throws Exception {
 		QueryCurrencyNameResponseDTO ret = new QueryCurrencyNameResponseDTO();
 		try {
@@ -57,7 +58,7 @@ public class CurrencyNameController {
 		return ret;
 	}
 	
-	@RequestMapping("/updateCurrencyName")
+	@RequestMapping(value="/updateCurrencyName", method = RequestMethod.POST)
 	public UpdateCurrencyNameResponseDTO update(@RequestBody UpdateCurrencyNameRequestDTO dto) throws Exception {
 		UpdateCurrencyNameResponseDTO ret = new UpdateCurrencyNameResponseDTO();
 		ret.setRequest(dto);
@@ -72,7 +73,7 @@ public class CurrencyNameController {
 		return ret;
 	}
 	
-	@RequestMapping("/deleteCurrencyName")
+	@RequestMapping(value="/deleteCurrencyName",method = RequestMethod.POST)
 	public DeleteCurrencyNameResponseDTO delete(@RequestBody DeleteCurrencyNameRequestDTO dto) throws Exception {
 		DeleteCurrencyNameResponseDTO ret = new DeleteCurrencyNameResponseDTO();
 		try {

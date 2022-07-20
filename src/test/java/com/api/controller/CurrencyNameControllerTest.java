@@ -4,7 +4,7 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.when;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -47,7 +47,7 @@ class CurrencyNameControllerTest {
 		request.setCode("USD");
 		request.setName("美金");
 		
-		mockMvc.perform(get("/insertCurrencyName").contentType(MediaType.APPLICATION_JSON)
+		mockMvc.perform(post("/insertCurrencyName").contentType(MediaType.APPLICATION_JSON)
         .content(objectMapper.writeValueAsString(request)))
         .andExpect(status().isOk())
         .andExpect(jsonPath("$.result").value("Success"))
@@ -62,7 +62,7 @@ class CurrencyNameControllerTest {
 		request.setCode("USD");
 		request.setName("美金");
 		
-		mockMvc.perform(get("/insertCurrencyName").contentType(MediaType.APPLICATION_JSON)
+		mockMvc.perform(post("/insertCurrencyName").contentType(MediaType.APPLICATION_JSON)
         .content(objectMapper.writeValueAsString(request)))
         .andExpect(status().isOk())
         .andExpect(jsonPath("$.result").value("Fail"))
@@ -87,7 +87,7 @@ class CurrencyNameControllerTest {
 		
 		when(currencyNameService.fetchCurrencyNameList()).thenReturn(currenyNameList);
 		
-		mockMvc.perform(get("/queryCurrencyName"))
+		mockMvc.perform(post("/queryCurrencyName"))
         .andExpect(status().isOk())
         .andExpect(jsonPath("$.result").value("Success"))
         .andDo(print());
@@ -101,7 +101,7 @@ class CurrencyNameControllerTest {
 		request.setCode("USD");
 		request.setName("測試");
 		
-		mockMvc.perform(get("/updateCurrencyName").contentType(MediaType.APPLICATION_JSON)
+		mockMvc.perform(post("/updateCurrencyName").contentType(MediaType.APPLICATION_JSON)
         .content(objectMapper.writeValueAsString(request)))
         .andExpect(status().isOk())
         .andExpect(jsonPath("$.result").value("Success"))
@@ -115,7 +115,7 @@ class CurrencyNameControllerTest {
 		DeleteCurrencyNameRequestDTO request = new DeleteCurrencyNameRequestDTO();
 		request.setCode("USD");
 		
-		mockMvc.perform(get("/deleteCurrencyName").contentType(MediaType.APPLICATION_JSON)
+		mockMvc.perform(post("/deleteCurrencyName").contentType(MediaType.APPLICATION_JSON)
         .content(objectMapper.writeValueAsString(request)))
         .andExpect(status().isOk())
         .andExpect(jsonPath("$.result").value("Success"))

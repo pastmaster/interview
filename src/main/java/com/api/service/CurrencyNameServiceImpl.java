@@ -10,7 +10,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.api.dto.currencyname.CurrencyNameDTO;
 import com.api.dto.currencyname.InsertCurrencyNameRequestDTO;
-import com.api.dto.currencyname.QueryCurrencyNameResponseDTO;
 import com.api.dto.currencyname.UpdateCurrencyNameRequestDTO;
 import com.api.entity.CurrencyName;
 import com.api.exception.APException;
