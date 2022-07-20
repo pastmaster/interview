@@ -1,10 +1,9 @@
-package com.api.dto.call;
+package com.api.dto.currencyname;
 
-public class GBP {
+public class CurrencyNameDTO {
 
 	private String code;
 	private String name;
-	private double rateFloat;
 	
 	public String getCode() {
 		return code;
@@ -17,12 +16,6 @@ public class GBP {
 	}
 	public void setName(String name) {
 		this.name = name;
-	}
-	public double getRateFloat() {
-		return rateFloat;
-	}
-	public void setRateFloat(double rateFloat) {
-		this.rateFloat = rateFloat;
 	}
 	
 }

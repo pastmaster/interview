@@ -1,32 +1,28 @@
 package com.api.dto.call;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-
 public class Bpi {
-	@JsonProperty("USD") 
-    private USD uSD;
-    @JsonProperty("GBP") 
-    private GBP gBP;
-    @JsonProperty("EUR") 
-    private EUR eUR;
-    
-	public USD getuSD() {
-		return uSD;
+	
+	private String code;
+	private String name;
+	private double rateFloat;
+	
+	public String getCode() {
+		return code;
 	}
-	public void setUSD(USD uSD) {
-		this.uSD = uSD;
+	public void setCode(String code) {
+		this.code = code;
 	}
-	public GBP getgBP() {
-		return gBP;
+	public String getName() {
+		return name;
 	}
-	public void setGBP(GBP gBP) {
-		this.gBP = gBP;
+	public void setName(String name) {
+		this.name = name;
 	}
-	public EUR geteUR() {
-		return eUR;
+	public double getRateFloat() {
+		return rateFloat;
 	}
-	public void setEUR(EUR eUR) {
-		this.eUR = eUR;
+	public void setRateFloat(double rateFloat) {
+		this.rateFloat = rateFloat;
 	}
     
     

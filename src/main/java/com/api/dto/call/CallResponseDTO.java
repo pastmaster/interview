@@ -1,9 +1,11 @@
 package com.api.dto.call;
 
+import java.util.List;
+
 public class CallResponseDTO {
 
 	private String updateTime;
-	private Bpi bpi;
+	private List<Bpi> bpiList;
 	
 	public String getUpdateTime() {
 		return updateTime;
@@ -11,11 +13,11 @@ public class CallResponseDTO {
 	public void setUpdateTime(String updateTime) {
 		this.updateTime = updateTime;
 	}
-	public Bpi getBpi() {
-		return bpi;
+	public List<Bpi> getBpiList() {
+		return bpiList;
 	}
-	public void setBpi(Bpi bpi) {
-		this.bpi = bpi;
+	public void setBpiList(List<Bpi> bpiList) {
+		this.bpiList = bpiList;
 	}
 	
 	

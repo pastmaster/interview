@@ -1,5 +1,8 @@
-package com.api;
+package com.api.controller;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -12,10 +15,15 @@ import com.api.converter.CoinDeskToCallConverter;
 import com.api.converter.JavascriptHttpMessageConverter;
 import com.api.dto.call.CallResponseDTO;
 import com.api.dto.coindesk.CoinDeskResponseDTO;
+import com.api.dto.currencyname.CurrencyNameDTO;
+import com.api.service.CurrencyNameService;
 
 @RestController
-public class CallCoinDesk {
+public class CallCoinDeskController {
 
+	@Autowired
+	private CurrencyNameService currencyNameService;
+	
 	private static final String URL = "https://api.coindesk.com/v1/bpi/currentprice.json";
 	
 	
@@ -29,8 +37,7 @@ public class CallCoinDesk {
         HttpEntity<String> httpEntity = new HttpEntity<String>(null, headers);
 
         CoinDeskResponseDTO coinDeskRes = restTemplate.exchange(URL, HttpMethod.GET, httpEntity, CoinDeskResponseDTO.class).getBody();
-        
-        return CoinDeskToCallConverter.convert(coinDeskRes);
-
+        List<CurrencyNameDTO> dtoList = currencyNameService.fetchCurrencyNameList();
+        return CoinDeskToCallConverter.convert(coinDeskRes, dtoList);
 	}
 }
